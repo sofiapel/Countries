@@ -1,23 +1,16 @@
 const { Router } = require('express');
+const { Country } = require('../db')
 const axios = require('axios');
+const { getCountries, countryById } = require('../Handlers/countries')
+const activityRoute = require("../routes/activity")
+
 
 const router = Router()
 
-router.get('/', async(_req,res) =>{
-    try {
-        const countries = await axios.get('https://restcountries.eu/rest/v2/all')
-        // console.log(countries)
-        console.log(countries.data)
-        res.json(countries.data)
-        
-    } catch(err) {
-        console.log('jaja entraba aca')
-        res.send(err)
+router.get('/', getCountries)
+router.get('/:idPais', countryById)
+router.post('/', activityRoute)
 
-    }
-    
-    
-    //res.send('locura')
-})
+
 
 module.exports = router;

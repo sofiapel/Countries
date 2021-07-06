@@ -17,22 +17,18 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    region:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     capital: {
       type: DataTypes.STRING,
       allowNull: false
     },
     subregion: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     area: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     population : {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     }
 
 
