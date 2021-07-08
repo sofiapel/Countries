@@ -6,8 +6,8 @@ const getAllCountries = async (_req, _res, next) =>{
     const response = await axios.get('https://restcountries.eu/rest/v2/all');
     const countries = response.data;
 
-    countries.map(c => {
-        Country.create({
+    countries.map(async c => {
+        const country = await Country.create({
             id: c.alpha3Code,
             name: c.name,
             flag: c.flag,
@@ -17,6 +17,7 @@ const getAllCountries = async (_req, _res, next) =>{
             population: c.population
 
         })
+        return country;
     })
 }
 const getCountries = async(req,res,next) => { 
@@ -46,6 +47,7 @@ const getCountries = async(req,res,next) => {
     }else{
         try{
             const pageAsNumber = Number.parseInt(req.query.page);
+            //el < 25 capaz lo puedo cambiar
             const page = (!Number.isNaN(pageAsNumber) 
                                     && pageAsNumber > 0 
                                     && pageAsNumber < 25)? pageAsNumber : 0;
