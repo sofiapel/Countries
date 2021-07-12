@@ -14,7 +14,7 @@ router.post('/', async (req, res, next)=> {
         
         //deberia llegar un arreglo con los id de los countries
         await activity.setCountries(req.body.countries)
-        res.send(activity)
+        res.status(201).send(activity)
         
     } catch (error) {
         next(error)    

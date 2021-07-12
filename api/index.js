@@ -1,8 +1,9 @@
+const { getAllCountries } = require('../api/src/Handlers/countries')
 //                       _oo0oo_
 //                      o8888888o
 //                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
+//                      (| u_u |)
+//                      0\  w  /0
 //                    ___/`---'\___
 //                  .' \\|     |// '.
 //                 / \\|||  :  |||// \
@@ -22,6 +23,7 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+  getAllCountries()
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

@@ -22,17 +22,19 @@ const getAllCountries = async (_req, _res, next) =>{
 }
 const getCountries = async(req,res,next) => { 
     //const name = req.query.name;
-    
+    console.log(req.query.name)
     if (req.query.name){
         nameQ = req.query.name.charAt(0).toUpperCase() + req.query.name.slice(1);
         try{
             const countries = await Country.findAll({
                 where:{
                     name: {
+                        // [Op.iLike]: `%${name}%` 
                         [Op.startsWith]: nameQ
                     }            
                 }
             })
+            //console.log(countries)
             if(countries.length > 0){
                 res.json(countries)
             }else{
@@ -46,17 +48,18 @@ const getCountries = async(req,res,next) => {
 
     }else{
         try{
-            const pageAsNumber = Number.parseInt(req.query.page);
-            //el < 25 capaz lo puedo cambiar
-            const page = (!Number.isNaN(pageAsNumber) 
-                                    && pageAsNumber > 0 
-                                    && pageAsNumber < 25)? pageAsNumber : 0;
-            const size = 10;
-            const countries = await Country.findAndCountAll({
-                limit: size,
-                offset: page*size
+            const countries = await Country.findAll()
+            // const pageAsNumber = Number.parseInt(req.query.page);
+            // //el < 25 capaz lo puedo cambiar
+            // const page = (!Number.isNaN(pageAsNumber) 
+            //                         && pageAsNumber > 0 
+            //                         && pageAsNumber < 25)? pageAsNumber : 0;
+            // const size = 10;
+            // const countries = await Country.findAndCountAll({
+            //     limit: size,
+            //     offset: page*size
 
-            })
+            // })
             res.json(countries)
 
         }catch(error){
