@@ -15,7 +15,6 @@ const getAllCountries = async (_req, _res, next) =>{
             capital: c.capital,
             area: c.area,
             population: c.population
-
         })
         return country;
     })
@@ -48,7 +47,13 @@ const getCountries = async(req,res,next) => {
 
     }else{
         try{
-            const countries = await Country.findAll()
+            const countries = await Country.findAll({
+                include:{
+                    model: Activity,
+                    attributes: ['id','name','difficulty', 'duration', 'season'], 
+                    through: { attributes: []}
+                }
+            })
             // const pageAsNumber = Number.parseInt(req.query.page);
             // //el < 25 capaz lo puedo cambiar
             // const page = (!Number.isNaN(pageAsNumber) 
@@ -60,7 +65,7 @@ const getCountries = async(req,res,next) => {
             //     offset: page*size
 
             // })
-            res.json(countries)
+            res.status(200).json(countries)
 
         }catch(error){
             next(error)
