@@ -4,17 +4,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCountries } from '../actions/index'
 import Country from './Country.jsx'
 
-function Countries({countries}) {
+function Countries() {
     const [page, setPage] = useState(0)
+    const countries = useSelector(state => state.countriesLoaded)
     function handleClick(number){
-        if((page > 0 && number == -1) || (page < 9 && number == 1))
+        if((page > 0 && number == -1) || (page < Math.floor(countries.length /10) && number == 1))
         setPage(page + number)
     }
 
     return (
         <div>
             <hr/>
-            <button onClick={() => handleClick(-1)}>Prev</button>
+            { page >0 ? <button onClick={() => handleClick(-1)}>Prev</button>: null}
             <button onClick={() => handleClick(1)}>Next</button>
             {
                 countries && 

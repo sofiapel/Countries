@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountryById } from '../actions/index'
+import { getCountries, getCountryById } from '../actions/index'
 
 
 function CountryDetail() {
@@ -13,7 +13,7 @@ function CountryDetail() {
         dispatch(getCountryById(countryId))
     }, [])
 
-    console.log('eeeee',country)
+    console.log('eeeee', country && country.activities)
 
     return (
         <div>
@@ -22,6 +22,9 @@ function CountryDetail() {
             <h3>{country && country.capital}</h3>
             <h3>{ country && country.population}</h3>
             <h3>{country && country.subregion}</h3>
+            {
+                country && (country.activities.length > 0) ? <h3>{country.activities.map(a => a.name)}</h3> : <h3>no hay activities </h3>
+            }
         </div>
     )
 }

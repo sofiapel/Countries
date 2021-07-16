@@ -1,0 +1,21 @@
+.div {
+    background-image: url('../img/countries2.0.jpeg');
+    height: 100vh;
+
+}
+
+.button {
+    height:20px; 
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+    height: 50px;
+    width: 100px;
+    border-radius: 20px;
+    background-color: rgba(172, 7, 7, 0);
+    text-decoration: none;
+    font-size: 125%;
+
+}

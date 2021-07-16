@@ -1,29 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import styled from 'styled-components'
-//import style from './Home.module.css'
-/*const Container = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-height: 200px;
-border: 3px solid green; 
+import style from './LandingPage.module.css'
 
-`*/
-const Button = styled.button `
-margin:auto;
-display:block;
-  
 
-`
-
-function Home() {
+function LandingPage() {
     return (
-        <div>
-            <Button><Link to='/countries'>Come in!</Link></Button>
+        <div className={style.div}>
+            <Link to='/countries'><button className={style.button}>Come in!</button></Link>
             
         </div>
     )
 }
 
-export default Home
+export default LandingPage
