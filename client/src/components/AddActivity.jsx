@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { getCountries, orderAsc } from "../actions";
+//import { useHistory } from "react-router-dom";
+import { getCountries } from "../actions";
 import { postActivity } from "../actions";
 
-function AddActivity() {
+export default function AddActivity() {
   const countries = useSelector((state) => state.countriesLoaded);
   const dispatch = useDispatch();
-  const { push } = useHistory();
-  const [errors, setErrors] = useState({});
+  //const { push } = useHistory();
+  const [errors, setErrors] = useState(false);
   const [values, setValues] = useState({
     name: "",
-    difficulty: 1, //tengo q pasarlo a number después
+    difficulty: 1,
     duration: "",
     season: "",
     countries: [],
   });
-  useEffect(() => {
-    dispatch(getCountries());
-    //dispatch(orderAsc())
 
-    
+  useEffect(() => {
+    dispatch(getCountries());  
   }, []);
 
   function handleChange(e) {
@@ -30,30 +28,40 @@ function AddActivity() {
     }));
   }
   function handleChangeActivity(e) {
-    setValues((values) => ({
-      ...values,
-      countries: [...values.countries, e.target.value],
-    }));
+    if(e.target.checked){
+      setValues((values) => ({
+        ...values,
+        countries: [...values.countries, e.target.value],
+      }));
+    }else{
+      if(values.countries.includes(e.target.value)) 
+      values.countries = values.countries.filter(
+        c => c !== e.target.value)
+      return
+    }
   }
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(
-      "before",
-      values.name,
-      values.difficulty,
-      values.duration,
-      values.season,
-      values.countries
-    );
+
+    console.log(values.countries)
+    //validate 
+    if(values.name.trim() === '' || values.difficulty === 1 || values.duration.trim() === '' || values.season.trim() ==='' || values.countries.length == 0){
+      setErrors(true);
+      return
+    }
+    
+
+    
+    console.log(values)
     dispatch(postActivity(values));
-    console.log(
-      "after",
-      values.name,
-      values.difficulty,
-      values.duration,
-      values.season,
-      values.countries
-    );
+    
+    //clean the checkbox
+    countries.map(
+      c => document.querySelector(`.${c.id}`).checked= false)
+
+    //setValues
     setValues({
       name: "",
       difficulty: 1,
@@ -61,14 +69,13 @@ function AddActivity() {
       season: "",
       countries: [],
     });
-
-    //document.querySelector("#name").value = "";
-    //document.querySelector("#duration").value = "";
-    //document.querySelector('#difficulty').selectedIndex = 0;
-    //document.querySelector('#season').selectIndex = 0;
-    //document.querySelector('#countries').selectIndex = 0;
+    document.querySelector("#name").value = "";
+    document.querySelector("#duration").value = "";
+    document.querySelector('#difficulty').selectedIndex = 0;
+    document.querySelector('#season').selectedIndex = 0;
 
   }
+  //sort the countries
   countries.sort(function compare(a,b){
     if ( a.name < b.name ){
         return -1;
@@ -79,12 +86,10 @@ function AddActivity() {
     return 0;
   })
 
-  console.log(countries)
-
   return (
     <div>
-      <h1>Area en construccion por tiempo indefinido</h1>
       <h3>Add a activity!</h3>
+      {errors ? <p className='alerta-error'>Todos los campos son obligatorios</p>: null}
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
@@ -119,26 +124,28 @@ function AddActivity() {
           <option value="autumn">autumn</option>
         </select>
         <label>Select Country:</label>
-        <select
-          name="countries"
-          multiple="multiple"
-          onChange={handleChangeActivity}
-        >
-            <option value=''></option>
-          {countries &&
-            countries.map((c) => {
-              return (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              );
-            })}
-        </select>
+        <ul>
+          { countries && countries.map(c =>{
+            return (
+              <li key={c.id}>
+                <div>
+                  <input
+                    className={c.id}
+                    type='checkbox'
+                    name={c.name}
+                    value={c.id}
+                    onChange={handleChangeActivity}
+                  />{c.name}
+                </div>
+              </li>
+            )
+          })}
+
+        </ul>
         <button type="submit">Finish</button>
       </form>
-      {/*<button onClick={handleFinish}>Finish</button>*/}
     </div>
   );
 }
 
-export default AddActivity;
+//export default AddActivity;

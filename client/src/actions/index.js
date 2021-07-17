@@ -1,6 +1,7 @@
+import { bindActionCreators } from 'redux';
 import AddActivity from '../components/AddActivity';
 
-const { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC, ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES } = require('./names');
+const { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC, ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES,SET_PAGE } = require('./names');
 const axios = require('axios');
 
 export function getCountries(){
@@ -58,7 +59,8 @@ export function orderContinent(continent){
     }
 }
 
-export function getActivities(activity){
+//CAMBIARLA
+/*export function getActivities(activity){
     return async(dispatch) =>{
         try{
             const countries = await axios.get('http://localhost:3001/countries')
@@ -70,15 +72,29 @@ export function getActivities(activity){
                 payload: countriesByActivity
             })
         }catch(err){
-            console.log(err.message)
+            console.log(err)
         }
     }
 
-}
+}*/
+ export function getActivities(activity){
+     return {
+        type: GET_ACTIVITIES,
+        payload: activity
+     }
+
+ }
 
 
 export function postActivity(activity){
     return async (dispatch) => {
         await axios.post('http://localhost:3001/activity', activity)   
+    }
+}
+
+export function setPage(n){
+    return {
+        type: SET_PAGE,
+        payload: n
     }
 }

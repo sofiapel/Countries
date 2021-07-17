@@ -25,8 +25,8 @@ function Filters() {
     return (
         <div>
             <label>Order by:</label>
-            <AscDscPop/>
             <ByContinent/>
+            <AscDscPop/>
             <ActivityFilter/>
 
             {/* <label>Order by:</label>

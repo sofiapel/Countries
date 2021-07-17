@@ -1,35 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { orderAsc, orderDsc, orderPop } from '../../actions/index'
+import { orderAsc, orderDsc, orderPop, setPage } from '../../actions/index'
 
 function AscDscPop() {
     const countries = useSelector(state => state.countriesLoaded)
-    const [value, setValue] = useState('')
+    //const [value, setValue] = useState('')
     const dispatch = useDispatch()
-
+    
     const handleChange = (e) => {
-        setValue(e.target.value)
+        //console.log(e.target.value)
+        //setValue(e.target.value)
+       
+        //console.log('wee',value)
+        e.target.value !== 'population'? 
+            e.target.value == 'asc'? 
+                dispatch(orderAsc()) : 
+                dispatch(orderDsc()) 
+        : dispatch(orderPop())
+
+        
+        dispatch(setPage(0))
+        //setValue('')
     }
     const handleSubmit = (e) => {
-        e.preventDefault()
-        //setValue(e.target.value)
+        /*e.preventDefault()
         console.log('target',e.target.value)
+        setValue(e.target.value)
         console.log('eeeee',value)
         value !== 'population'? value == 'asc'? dispatch(orderAsc()) : dispatch(orderDsc()) : dispatch(orderPop())
         setValue('')
         console.log(countries)
+        dispatch(setPage(0))*/
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit} >
-                <select value={value} onChange={handleChange}>
+            <form /*onSubmit={handleSubmit}*/ >
+                <select onChange={handleChange}>
                     <option defaultValue=''></option>
                     <option value='asc'>A-Z</option>
                     <option value='dsc'>Z-A</option>
                     <option value='population'>Population</option>
                 </select>
-                <button type='submit'>OK</button>
+                {/*<button type='submit'>OK</button>*/}
             </form>
 
 

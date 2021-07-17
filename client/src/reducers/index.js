@@ -1,17 +1,24 @@
-import { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC,ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES } from "../actions/names"
+import { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC,ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES, SET_PAGE } from "../actions/names"
 const initialState = {
-    //allCountries:[],
+    allCountries:[],
     countriesLoaded: [],
     countryById: undefined,
-    activities: []
+    pages: 0
 };
 
 function rootReducer(state=initialState, action){
     switch(action.type){
+        case SET_PAGE:
+            return{
+                ...state,
+                pages: action.payload
+            }
         case GET_ACTIVITIES:
             return {
                 ...state,
-                countriesLoaded: action.payload
+                countriesLoaded: state.allCountries.filter(c =>{
+                    return c.activities && c.activities.some(a => a.name.toUpperCase() == action.payload.toUpperCase())
+                })
             }
         case GET_COUNTRY_BY_ID:
             //funciona :D
@@ -31,7 +38,6 @@ function rootReducer(state=initialState, action){
             //console.log('holaa',action.payload)
             return {
                 ...state,
-                ///AAAAAAAAAAAAAAAA
                 allCountries: action.payload,
                 countriesLoaded: action.payload,
             }
@@ -71,7 +77,7 @@ function rootReducer(state=initialState, action){
             case ORDER_CONTINENT:
                 return {
                     ...state,
-                    countriesLoaded: state.countriesLoaded.filter(country => country.subregion.indexOf(action.payload) !== -1) 
+                    countriesLoaded: state.allCountries.filter(country => country.subregion.indexOf(action.payload) !== -1) 
                 } 
 
         default:
