@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import { useHistory } from "react-router-dom";
 import { getCountries } from "../actions";
 import { postActivity } from "../actions";
+import style from './AddActivity.module.css'
+import { RiErrorWarningFill } from 'react-icons/ri'
+import { GrStatusGood } from 'react-icons/gr'
+
+
 
 export default function AddActivity() {
   const countries = useSelector((state) => state.countriesLoaded);
   const dispatch = useDispatch();
-  //const { push } = useHistory();
   const [errors, setErrors] = useState(false);
   const [values, setValues] = useState({
     name: "",
@@ -20,6 +23,11 @@ export default function AddActivity() {
   useEffect(() => {
     dispatch(getCountries());  
   }, []);
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 
   function handleChange(e) {
     setValues((values) => ({
@@ -45,13 +53,14 @@ export default function AddActivity() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(values.countries)
+    //console.log(values.countries)
     //validate 
-    if(values.name.trim() === '' || values.difficulty === 1 || values.duration.trim() === '' || values.season.trim() ==='' || values.countries.length == 0){
+    console.log(values.name, values.difficulty, values.duration, values.season, values.countries)
+    if(values.name === '' || values.difficulty === 1 || values.duration === '' || values.season === '' || values.countries.length === 0){
       setErrors(true);
+      console.log('QUEEEEEEE', errors)
       return
     }
-    
 
     
     console.log(values)
@@ -88,9 +97,11 @@ export default function AddActivity() {
 
   return (
     <div>
-      <h3>Add a activity!</h3>
-      {errors ? <p className='alerta-error'>Todos los campos son obligatorios</p>: null}
-      <form onSubmit={handleSubmit}>
+      <h3 className={style.title}>Add a activity!</h3>
+      {
+        errors? <p className={style.warning}><RiErrorWarningFill/>Todos los campos son obligatorios</p> : null 
+      }
+      <form onSubmit={handleSubmit} action='#section-1'>
         <label>Name:</label>
         <input
           id="name"
@@ -124,7 +135,7 @@ export default function AddActivity() {
           <option value="autumn">autumn</option>
         </select>
         <label>Select Country:</label>
-        <ul>
+        <ul className={style.container}>
           { countries && countries.map(c =>{
             return (
               <li key={c.id}>
@@ -142,10 +153,11 @@ export default function AddActivity() {
           })}
 
         </ul>
-        <button type="submit">Finish</button>
+        
+        <button type="submit" onClick={topFunction}>Finish</button>
+        
       </form>
     </div>
   );
 }
 
-//export default AddActivity;

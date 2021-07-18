@@ -1,0 +1,27 @@
+/* html{
+    scroll-behavior: smooth;
+} */
+.container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    list-style:none;
+}
+
+.title{
+    font-size: 300%;
+    display: flex;
+    justify-content: center;
+}
+
+.warning{
+    font-size: 20px;
+    color: red;
+    display: flex;
+    padding: 10px;
+}
+
+/* scroll-container {
+    display: block;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+} */

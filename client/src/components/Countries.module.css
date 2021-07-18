@@ -1,0 +1,44 @@
+/* .containerdelcontainer{
+    background-image: url('../img/home.jpg');
+    height: 230vh;
+    
+} */
+
+.containerr{
+    /* display: grid;
+    grid-template-columns: repeat(3,1fr); */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+.buttons{
+    display:flex;
+    justify-content: center;
+    position: sticky;
+    padding: 5px;
+
+}
+
+.ayuda{
+    color:rgb(0, 0, 0);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    padding: 5px;
+}
+
+.ayudaa{
+    color:rgb(90, 90, 90);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    padding: 5px;
+
+}

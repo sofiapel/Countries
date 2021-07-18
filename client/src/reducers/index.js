@@ -1,9 +1,11 @@
+import { GrAction } from "react-icons/gr";
 import { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC,ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES, SET_PAGE } from "../actions/names"
 const initialState = {
     allCountries:[],
     countriesLoaded: [],
     countryById: undefined,
-    pages: 0
+    pages: 0,
+    resetContinent: false
 };
 
 function rootReducer(state=initialState, action){
@@ -45,10 +47,10 @@ function rootReducer(state=initialState, action){
             return {
                 ...state,
                 countriesLoaded: state.countriesLoaded.slice().sort(function compare(a,b){
-                    if ( a.name < b.name ){
+                    if ( a.name.localeCompare(b.name) < b.name.localeCompare(a.name) ){
                         return -1;
                     }
-                    if ( a.name > b.name ){
+                    if ( a.name.localeCompare(b.name) > b.name.localeCompare(a.name) ){
                     return 1;
                     }
                     return 0;
@@ -58,10 +60,10 @@ function rootReducer(state=initialState, action){
                 return {
                     ...state,
                     countriesLoaded: state.countriesLoaded.slice().sort(function compare(a,b){
-                        if ( a.name < b.name ){
+                        if ( a.name.localeCompare(b.name) < b.name.localeCompare(b.name) ){
                             return -1;
                         }
-                        if ( a.name > b.name ){
+                        if ( a.name.localeCompare(b.name) > b.name.localeCompare(b.name) ){
                         return 1;
                         }
                         return 0;

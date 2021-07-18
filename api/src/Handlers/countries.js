@@ -37,7 +37,8 @@ const getCountries = async(req,res,next) => {
             if(countries.length > 0){
                 res.json(countries)
             }else{
-                res.status(404).send('el país no fue encontrado')
+                //204???
+                res.send([{msg:'No country was founded'}])
             }
             
     
@@ -87,7 +88,7 @@ const countryById = async (req,res, next)=> {
             },
             include: Activity
         })
-        res.json(country)
+        res.status(200).json(country)
 
     }catch(error){
         next(error)

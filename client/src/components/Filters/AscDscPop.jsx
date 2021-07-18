@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { orderAsc, orderDsc, orderPop, setPage } from '../../actions/index'
+import { orderAsc, orderDsc, orderPop, resetContinent, setPage } from '../../actions/index'
+import style from './AscDscPop.module.css'
 
 function AscDscPop() {
     const countries = useSelector(state => state.countriesLoaded)
@@ -8,10 +9,6 @@ function AscDscPop() {
     const dispatch = useDispatch()
     
     const handleChange = (e) => {
-        //console.log(e.target.value)
-        //setValue(e.target.value)
-       
-        //console.log('wee',value)
         e.target.value !== 'population'? 
             e.target.value == 'asc'? 
                 dispatch(orderAsc()) : 
@@ -36,7 +33,7 @@ function AscDscPop() {
     return (
         <div>
             <form /*onSubmit={handleSubmit}*/ >
-                <select onChange={handleChange}>
+                <select className={style.select} onChange={handleChange}>
                     <option defaultValue=''></option>
                     <option value='asc'>A-Z</option>
                     <option value='dsc'>Z-A</option>

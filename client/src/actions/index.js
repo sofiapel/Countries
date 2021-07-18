@@ -1,3 +1,4 @@
+import { GrAction } from 'react-icons/gr';
 import { bindActionCreators } from 'redux';
 import AddActivity from '../components/AddActivity';
 
@@ -96,5 +97,12 @@ export function setPage(n){
     return {
         type: SET_PAGE,
         payload: n
+    }
+}
+
+export function resetContinent(boolean){
+    return {
+        type: 'RESET_CONTINENT',
+        payload: boolean
     }
 }
