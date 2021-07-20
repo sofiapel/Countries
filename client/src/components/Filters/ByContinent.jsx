@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { orderContinent, resetContinent, setPage } from '../../actions'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { orderContinent, setPage } from '../../actions'
+import style from './ByContinent.module.css'
 
 function ByContinent() {
-    //const [continent, setContinent] = useState('') 
     const dispatch = useDispatch()
 
     
@@ -19,9 +19,9 @@ function ByContinent() {
     }
     return (
         <div>
-            <form /*onSubmit={handleSubmit}*/>
-                <select onChange={handleChange} id='filterContinent' >
-                    <option defaultValue=''></option>
+            <form>
+                <select className={style.select} onChange={handleChange} id='filterContinent' >
+                    <option defaultValue=''>continent</option>
                     <option value='America'>America</option>
                     <option value='Europe'>Europe</option>
                     <option value='Asia'>Asia</option>
@@ -29,7 +29,6 @@ function ByContinent() {
                     <option value='Africa'>Africa</option>:
 
                 </select>
-                {/*<button type='submit'>OK</button>*/}
             </form>
         </div>
     )

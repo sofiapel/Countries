@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountries, getCountryById } from '../actions/index'
+import style from './CountryDetail.module.css'
 
 
 function CountryDetail() {
@@ -17,24 +18,30 @@ function CountryDetail() {
 
     return (
         <div>
-            <h1>{country && country.name}</h1>
-            <h3>capital: {country && country.capital}</h3>
-            <h3>population: { country && country.population}</h3>
-            <h3>continent: {country && country.subregion}</h3>
-            <h2>Activities</h2>
+            <div className={style.country}>
+                <div>
+                <h1>{country && country.name.replace(/\b\w/g, l => l.toUpperCase())}</h1>
+                <h3>Capital: {country && country.capital}</h3>
+                <h3>Population: { country && new Intl.NumberFormat().format(country.population)}</h3>
+                <h3>Continent: {country && country.subregion}</h3>
+                </div>
+                <div>
+                <img className={style.img} src={country && country.flag} alt='no se encontró imagen' />
+                </div>
+            </div>
+            <h2 className={style.activitiesTitle}>Activities</h2>
             {
                 country && (country.activities.length > 0) ? 
-                <h3>{country && country.activities.map(a => (
+                <div className={style.containerActivity}>{country && country.activities.map(a => (
                     <div key={a.id}>
-                        <p>name: { a.name}</p>
-                        <p>difficulty: {a.difficulty}/5</p>
-                        <p>duration: {a.duration}</p>
-                        <p>season: {a.season}</p>
+                        <p>Name: { a.name}</p>
+                        <p>Difficulty: {a.difficulty}/5</p>
+                        <p>Duration: {a.duration}</p>
+                        <p>Season: {a.season}</p>
                         <hr/>
-
                     </div>
-                ))}</h3> 
-                : <h3>no hay activities </h3>
+                ))}</div> 
+                : <p className={style.noActivities}>no activities yet</p>
             
         }
         </div>

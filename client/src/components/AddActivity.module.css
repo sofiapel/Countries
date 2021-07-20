@@ -1,17 +1,73 @@
-/* html{
-    scroll-behavior: smooth;
-} */
+* {
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-font-smoothing:antialiased;
+    -moz-font-smoothing:antialiased;
+    -o-font-smoothing:antialiased;
+    /*font-smoothing:antialiased;*/
+    text-rendering:optimizeLegibility;
+ }
+
+.input{
+        width:100%;
+        background: #fff;
+        border: 0; 
+        -moz-border-radius: 4px;  
+        -webkit-border-radius: 4px;  
+        border-radius: 4px;
+        margin-bottom: 25px;  
+        padding: 5px;  
+
+}
+
+
+
+
+
+
+.checkboxnt{
+    
+    background-color:rgba(35, 131, 40, 0.9);
+    padding: 10px 20px 30px 20px;
+    max-width:100%;
+    float: left;
+    left: 50%;
+    border-radius:7px;
+    -webkit-border-radius:7px;
+    -moz-border-radius:7px;
+    
+
+}
+.labelCountry{
+    display: flex;
+    justify-content: center;
+    font-size: 27px;  
+    margin-bottom: 2px;
+    font-family: Arial, san-serif;
+}
+
+.label{ 
+    font-size: 27px;  
+    margin-bottom: 2px;
+    font-family: Arial, san-serif;
+ } 
+
+.item{
+    padding-bottom: 10px;
+}
+
+.checkboxTitle{
+    display: flex;
+    justify-content: center;
+}
 .container{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     list-style:none;
 }
 
-.title{
-    font-size: 300%;
-    display: flex;
-    justify-content: center;
-}
+
 
 .warning{
     font-size: 20px;
@@ -20,8 +76,55 @@
     padding: 10px;
 }
 
-/* scroll-container {
-    display: block;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
+.button {
+    padding: 16px 42px;
+    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+    line-height: 1.25;
+    background: #cc230c;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    position: relative;
+    transition: background-color .6s ease;
+    overflow: hidden;
+
+
+
+}
+.button:hover{
+    background: #a83b26;
+}
+
+.button:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform-style: flat;
+    transform: translate3d(-50%,-50%,0);
+    background: rgba(white,.1);
+    border-radius: 100%;
+    transition: width .3s ease, height .3s ease;
+}
+
+/* button:hover {
+    background: darken(#FC6E51,7%);
 } */
+
+button:hover {
+    background: darken(#FC6E51,7%);
+}
+
+button:active:after {
+    width: 200px;
+    height: 200px;
+}
+
+.containerButton{
+    display:flex;
+    justify-content: center;
+}

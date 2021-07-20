@@ -62,6 +62,8 @@ export default function AddActivity() {
       return
     }
 
+    setErrors(false)
+
     
     console.log(values)
     dispatch(postActivity(values));
@@ -102,15 +104,20 @@ export default function AddActivity() {
         errors? <p className={style.warning}><RiErrorWarningFill/>Todos los campos son obligatorios</p> : null 
       }
       <form onSubmit={handleSubmit} action='#section-1'>
-        <label>Name:</label>
+        <div className={style.checkboxnt}>
+        <div className={style.item}>
+        <label className={style.label}>Name:</label>
         <input
+          className={style.input}
           id="name"
           name="name"
           values={values.name}
           onChange={handleChange}
         />
-        <label>Difficulty:</label>
-        <select id="difficulty" name="difficulty" onChange={handleChange}>
+        </div>
+        <div className={style.item}>
+        <label className={style.label}>Difficulty:</label>
+        <select className={style.input} id="difficulty" name="difficulty" onChange={handleChange}>
           <option defaultValue={true}></option>
           <option value={1}>1</option>
           <option value={2}>2</option>
@@ -118,23 +125,33 @@ export default function AddActivity() {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
+        </div>
 
-        <label>Duration:</label>
+        <div className={style.item}>
+        <label className={style.label}>Duration:</label>
         <input
+          className={style.input}
           id="duration"
           name="duration"
           value={values.duration}
           onChange={handleChange}
         />
-        <label>Season:</label>
-        <select id='season' name="season" onChange={handleChange}>
-          <option defaultValue={true}></option>
+        </div>
+
+        <div className={style.item}>
+        <label className={style.label} >Season:</label>
+        <select className={style.input} id='season' name="season" onChange={handleChange}>
+          <option className={style.option} defaultValue={true}></option>
           <option value="summer">summer</option>
           <option value="winter">winter</option>
           <option value="spring">spring</option>
           <option value="autumn">autumn</option>
         </select>
-        <label>Select Country:</label>
+        </div>
+        </div>
+        
+
+        <label className={style.labelCountry}>Select Country:</label>
         <ul className={style.container}>
           { countries && countries.map(c =>{
             return (
@@ -146,16 +163,16 @@ export default function AddActivity() {
                     name={c.name}
                     value={c.id}
                     onChange={handleChangeActivity}
-                  />{c.name}
+                  />{c.name.replace(/\b\w/g, l => l.toUpperCase())}
                 </div>
               </li>
             )
           })}
 
         </ul>
-        
-        <button type="submit" onClick={topFunction}>Finish</button>
-        
+        <div className={style.containerButton}>
+        <button className={style.button} type="submit" onClick={topFunction}>Finish</button>
+        </div>
       </form>
     </div>
   );

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import Filters from './Filters/Filters'
 import { getCountries, getCountriesByName, setPage } from '../actions/index'
+import { BiSearchAlt } from 'react-icons/bi';
+import style from './SearchBar.module.css'
 
 function SearchBar() {
     const [country, setCountry] = useState('')
@@ -11,7 +13,6 @@ function SearchBar() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCountries())
-        //dispatch(setPage(0))
     }, [])
 
     const handleChange = (e) => {
@@ -21,19 +22,31 @@ function SearchBar() {
         e.preventDefault()
         dispatch(getCountriesByName(country.trim()))
         dispatch(setPage(0))
-        console.log('aaaaaaaaa',page)
-      
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input placeholder="Search..." type="text" value={country} onChange={handleChange}></input>
-                <button type="submit" value="Search" >BUSCAR</button>
-            </form>
-            <hr/>
+
+        <>
+ 
+            <div >
+                <form onSubmit={handleSubmit} className={style.container}>
+                    <input 
+                        className={style.searchTerm} 
+                        placeholder="Search a country..." 
+                        type="text" 
+                        value={country} 
+                        onChange={handleChange}
+                    />
+                    <button 
+                        className={style.searchButton} 
+                        type="submit"   
+                        value="Search">
+                            <BiSearchAlt/>
+                    </button>
+                </form>
+            </div>
             <Filters/>
-        </div>
+        </>
     )
 }
 

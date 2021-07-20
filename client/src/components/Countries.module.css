@@ -1,12 +1,4 @@
-/* .containerdelcontainer{
-    background-image: url('../img/home.jpg');
-    height: 230vh;
-    
-} */
-
 .containerr{
-    /* display: grid;
-    grid-template-columns: repeat(3,1fr); */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -23,7 +15,7 @@
 }
 
 .ayuda{
-    color:rgb(0, 0, 0);
+    color:rgb(76, 128, 240);
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);

@@ -9,7 +9,7 @@ const getAllCountries = async (_req, _res, next) =>{
     countries.map(async c => {
         const country = await Country.create({
             id: c.alpha3Code,
-            name: c.name,
+            name: c.name.toLowerCase(),
             flag: c.flag,
             subregion: c.subregion,
             capital: c.capital,
@@ -23,7 +23,7 @@ const getCountries = async(req,res,next) => {
     //const name = req.query.name;
     console.log(req.query.name)
     if (req.query.name){
-        nameQ = req.query.name.charAt(0).toUpperCase() + req.query.name.slice(1);
+        nameQ = req.query.name.toLowerCase();
         try{
             const countries = await Country.findAll({
                 where:{

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, resetContinent } from '../../actions';
 import { setPage } from '../../actions/index'
+import style from './ActivityFilter.module.css'
 
 function ActivityFilter() {
     const countries = useSelector(state => state.allCountries)
@@ -27,31 +28,21 @@ function ActivityFilter() {
     const handleChange = (e) => {
         Reset()
         console.log(e.target.value)
-        e.target.value !== ''? 
-            console.log('xq no funciona'):
-            console.log('ternario hdp')
         if(e.target.value !== ''){
-            console.log('ola')
             dispatch(getActivities(e.target.value))
         }else{
             return
         }
-        //     dispatch(getActivities(e.target.value)) :
-        //     null 
         dispatch(setPage(0))
     }
-
-    console.log('OOOOOOOOOO', activitiesOptions[0])
-
-
     return (
         <div>
             <form>
-                <select onChange={handleChange} id='filterActivity'>
+                <select className={style.select} onChange={handleChange} id='filterActivity'>
                     {
                         activitiesOptions[0] === 'no activities yet'?
                             <option disabled={true}>no activities yet</option>:
-                            <option>select an activity</option>
+                            <option>activity</option>
                     }
                     {
                         activitiesOptions.map(a => <option value={a} key={a}>{a}</option>)

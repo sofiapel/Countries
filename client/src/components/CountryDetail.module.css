@@ -1,0 +1,30 @@
+.noActivities{
+    display:flex;
+    justify-content: center;
+}
+
+
+
+.containerActivity{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.country{
+    display: flex;
+    justify-content: center;
+}
+
+.activitiesTitle{
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    height: 183px;
+    width: 234px;
+    padding: 20px;
+    object-fit: cover;
+}

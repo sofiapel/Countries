@@ -3,19 +3,35 @@
     height: 100vh;
 
 }
+.img{
+  position: fixed;
+  top: 50%; left: 50%;
+  z-index: 1;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: 95vh;
+  transform: translate(-50%, -50%);
+  background-size: 95%;
+
+
+}
 
 .button {
     height:20px; 
     width:100px; 
-    margin: -20px -50px; 
-    position:relative;
+    margin: -19px -33px; 
+    position:fixed;
+    z-index: 10;
     top:50%; 
     left:50%;
     height: 50px;
     width: 100px;
     border-radius: 20px;
-    background-color: rgba(172, 7, 7, 0);
+    background-color: rgba(148, 143, 143, 0);
     text-decoration: none;
     font-size: 125%;
+    color: rgb(245, 243, 243);
+    font-family: 'Anton', sans-serif;
 
 }

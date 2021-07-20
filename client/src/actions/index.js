@@ -1,7 +1,3 @@
-import { GrAction } from 'react-icons/gr';
-import { bindActionCreators } from 'redux';
-import AddActivity from '../components/AddActivity';
-
 const { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC, ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES,SET_PAGE } = require('./names');
 const axios = require('axios');
 

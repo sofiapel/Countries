@@ -7,14 +7,11 @@ import { IoAirplane } from "react-icons/io5";
 import { IconContext } from 'react-icons/lib';
 
 function Countries() {
-    //const [page, setPage] = useState(0)
     const page = useSelector((state) => state.pages)
     const countries = useSelector(state => state.countriesLoaded)
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(setPage(0))
-    // },[])
-    //console.log(page)
+
+
     function handleClick(number){
         const limitSup = Number.isInteger(countries.length/10) ? 
             Math.floor(countries.length/10)-1 :
@@ -25,42 +22,42 @@ function Countries() {
     console.log(countries[0])
 
     return (
-        <div /*className={style.containerdelcontainer}*/>
-            <hr/>
+        <div>
             <div className={style.buttons}>
-            { page >0 ?
-            <IconContext.Provider value={{ size:'2rem', className:`${style.ayuda}`}}>
-                <IoAirplane onClick={() => handleClick(-1)}>Prev</IoAirplane>
-            </IconContext.Provider> 
-            :<IconContext.Provider value={{ size:'2rem', className:`${style.ayudaa}`}}>
-                <IoAirplane onClick={() => handleClick(-1)}>Prev</IoAirplane>
-            </IconContext.Provider>  }
-            
-            { countries && page*10 +10 < (countries.indexOf(countries[countries.length-1]))?
-                <IconContext.Provider value={{size:'2rem'}}>
-                    <IoAirplane onClick={() => handleClick(1)}>Next</IoAirplane>
-                </IconContext.Provider>:
-                <IconContext.Provider value={{size:'2rem', color:'rgb(90, 90, 90)'}}>
-                    <IoAirplane onClick={() => handleClick(1)}>Next</IoAirplane>
-                </IconContext.Provider>            
-            }
-
+                { page >0 ?
+                <IconContext.Provider value={{ size:'2rem', className:`${style.ayuda}`}}>
+                    <IoAirplane onClick={() => handleClick(-1)}>Prev</IoAirplane>
+                </IconContext.Provider> 
+                :<IconContext.Provider value={{ size:'2rem', className:`${style.ayudaa}`}}>
+                    <IoAirplane onClick={() => handleClick(-1)}>Prev</IoAirplane>
+                </IconContext.Provider>  }
+                
+                { countries && page*10 +10 < (countries.indexOf(countries[countries.length-1]))?
+                    <IconContext.Provider value={{size:'2rem', color:'rgb(76, 128, 240)'}}>
+                        <IoAirplane onClick={() => handleClick(1)}>Next</IoAirplane>
+                    </IconContext.Provider>:
+                    <IconContext.Provider value={{size:'2rem', color:'rgb(90, 90, 90)'}}>
+                        <IoAirplane onClick={() => handleClick(1)}>Next</IoAirplane>
+                    </IconContext.Provider>            
+                }
             </div>
             {
                 
-                (countries[0] && countries[0].msg)?<h3>{countries[0].msg}</h3>:
-                <div className={style.containerr}>{
-                countries && 
-                countries.slice(page*10, page*10 + 10).map(c => (
-                    <Country 
-                        key={c.id} 
-                        name={c.name} 
-                        flag={c.flag} 
-                        subregion={c.subregion} 
-                        id={c.id}
-                    />
-                    ))}
-                </div>
+                (countries[0] && countries[0].msg)?
+                    <h3>{countries[0].msg}</h3>:
+                    <div className={style.containerr}>{
+                        countries && 
+                        countries.slice(page*10, page*10 + 10).map(c => {
+                            const nameCountry = c.name.replace(/\b\w/g, l => l.toUpperCase())
+                            return <Country 
+                                key={c.id} 
+                                name={nameCountry} 
+                                flag={c.flag} 
+                                subregion={c.subregion} 
+                                id={c.id}
+                            />
+                        })}
+                    </div>
             }
 
         </div>
