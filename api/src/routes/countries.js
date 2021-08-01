@@ -6,7 +6,7 @@ const activityRoute = require("../routes/activity")
 
 
 const router = Router()
-
+ 
 router.get('/', getCountries)
 router.get('/:idPais', countryById)
 router.post('/', activityRoute)
