@@ -20,7 +20,6 @@ const getAllCountries = async (_req, _res, next) =>{
     })
 }
 const getCountries = async(req,res,next) => { 
-    //const name = req.query.name;
     console.log(req.query.name)
     if (req.query.name){
         nameQ = req.query.name.toLowerCase();
@@ -28,17 +27,16 @@ const getCountries = async(req,res,next) => {
             const countries = await Country.findAll({
                 where:{
                     name: {
-                        // [Op.iLike]: `%${name}%` 
-                        [Op.startsWith]: nameQ
+                        [Op.iLike]: `%${nameQ}%` 
+                        //[Op.startsWith]: nameQ
                     }            
                 }
             })
-            //console.log(countries)
             if(countries.length > 0){
                 res.json(countries)
             }else{
-                //204???
-                res.send([{msg:'No country was founded'}])
+              //204 404???
+              res.send([{msg:'No country was founded'}])
             }
             
     
@@ -55,24 +53,12 @@ const getCountries = async(req,res,next) => {
                     through: { attributes: []}
                 }
             })
-            // const pageAsNumber = Number.parseInt(req.query.page);
-            // //el < 25 capaz lo puedo cambiar
-            // const page = (!Number.isNaN(pageAsNumber) 
-            //                         && pageAsNumber > 0 
-            //                         && pageAsNumber < 25)? pageAsNumber : 0;
-            // const size = 10;
-            // const countries = await Country.findAndCountAll({
-            //     limit: size,
-            //     offset: page*size
 
-            // })
             res.status(200).json(countries)
 
         }catch(error){
             next(error)
         }
-        
-
     }
 
 
@@ -101,3 +87,15 @@ module.exports = {
     getCountries,
     countryById
 }
+
+// const pageAsNumber = Number.parseInt(req.query.page);
+// //el < 25 capaz lo puedo cambiar
+// const page = (!Number.isNaN(pageAsNumber) 
+//                         && pageAsNumber > 0 
+//                         && pageAsNumber < 25)? pageAsNumber : 0;
+// const size = 10;
+// const countries = await Country.findAndCountAll({
+//     limit: size,
+//     offset: page*size
+
+//  })
