@@ -7,10 +7,11 @@ export default function Country({name, flag,subregion, id}) {
         <div className={style.container}>
             <Link to={`/countries/${id}`}>
                 <h3 className={style.title}>{name}</h3>
-            </Link>
+            
             <img className={style.img} src={flag} alt='no se encontró imagen' />
+            <div style={{marginLeft: '15%',marginBottom: '5%'}}>{subregion}</div>
+            </Link>
         </div>
     )
 }
 
-//export default Country;

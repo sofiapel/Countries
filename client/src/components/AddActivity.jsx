@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../actions";
 import { postActivity } from "../actions";
 import style from './AddActivity.module.css'
 import { RiErrorWarningFill } from 'react-icons/ri'
-import { GrStatusGood } from 'react-icons/gr'
+import MultiSelect from 'multiselect-react-dropdown';
+import Logo from '../img/mapa.png'
 
-
-
-export default function AddActivity() {
-  const countries = useSelector((state) => state.countriesLoaded);
+export default function AddActivity(props) {
+  const countries = useSelector((state) => state.allCountries);
   const dispatch = useDispatch();
+  const multiselectRef = useRef()
   const [errors, setErrors] = useState(false);
   const [values, setValues] = useState({
     name: "",
@@ -19,11 +19,15 @@ export default function AddActivity() {
     season: "",
     countries: [],
   });
-
+  
   useEffect(() => {
     dispatch(getCountries());  
   }, []);
 
+ 
+  const options = countries.map(c => {
+     return { label: c.name, value: c.id }
+   })
   function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -35,28 +39,29 @@ export default function AddActivity() {
       [e.target.name]: e.target.value,
     }));
   }
-  function handleChangeActivity(e) {
-    if(e.target.checked){
-      setValues((values) => ({
-        ...values,
-        countries: [...values.countries, e.target.value],
-      }));
-    }else{
-      if(values.countries.includes(e.target.value)) 
-      values.countries = values.countries.filter(
-        c => c !== e.target.value)
-      return
-    }
+  function onSelect(selectedList){
+    setValues({
+      ...values,
+      countries: selectedList.map(c => c.value)
+    })   
+  }
+
+  function onRemove(selectedList){
+    setValues({
+      ...values,
+      countries: selectedList.map(c => c.value)
+    })
+  }
+  function handleBack(e){
+    props.history.push('/countries')
   }
 
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    //console.log(values.countries)
-    //validate 
-    console.log(values.name, values.difficulty, values.duration, values.season, values.countries)
-    if(values.name === '' || values.difficulty === 1 || values.duration === '' || values.season === '' || values.countries.length === 0){
+    
+    if(values.name.trim() === '' || values.difficulty === 1 || values.duration.trim() === '' || values.season === '' || values.countries.length === 0){
       setErrors(true);
       console.log('QUEEEEEEE', errors)
       return
@@ -64,15 +69,10 @@ export default function AddActivity() {
 
     setErrors(false)
 
-    
-    console.log(values)
+    console.log(values.name, values.difficulty, values.duration, values.season, values.countries)
     dispatch(postActivity(values));
     
-    //clean the checkbox
-    countries.map(
-      c => document.querySelector(`.${c.id}`).checked= false)
 
-    //setValues
     setValues({
       name: "",
       difficulty: 1,
@@ -80,13 +80,15 @@ export default function AddActivity() {
       season: "",
       countries: [],
     });
+
     document.querySelector("#name").value = "";
     document.querySelector("#duration").value = "";
     document.querySelector('#difficulty').selectedIndex = 0;
     document.querySelector('#season').selectedIndex = 0;
+    multiselectRef.current.resetSelectedValues();
+    
 
   }
-  //sort the countries
   countries.sort(function compare(a,b){
     if ( a.name < b.name ){
         return -1;
@@ -98,12 +100,16 @@ export default function AddActivity() {
   })
 
   return (
-    <div>
-      <h3 className={style.title}>Add a activity!</h3>
+    <div className={style.background}>
+      <div className={style.first}>
+      <div>
+        <img className={style.img} onClick={handleBack} src={Logo} alt='image not found'/>
+      </div>      
       {
-        errors? <p className={style.warning}><RiErrorWarningFill/>Todos los campos son obligatorios</p> : null 
+        errors? <p className={style.warning}><RiErrorWarningFill/>All fields are required</p> : null 
       }
-      <form onSubmit={handleSubmit} action='#section-1'>
+      </div>
+      <form className={style.container} onSubmit={handleSubmit} action='#section-1'>
         <div className={style.checkboxnt}>
         <div className={style.item}>
         <label className={style.label}>Name:</label>
@@ -148,28 +154,19 @@ export default function AddActivity() {
           <option value="autumn">autumn</option>
         </select>
         </div>
-        </div>
-        
-
         <label className={style.labelCountry}>Select Country:</label>
-        <ul className={style.container}>
-          { countries && countries.map(c =>{
-            return (
-              <li key={c.id}>
-                <div>
-                  <input
-                    className={c.id}
-                    type='checkbox'
-                    name={c.name}
-                    value={c.id}
-                    onChange={handleChangeActivity}
-                  />{c.name.replace(/\b\w/g, l => l.toUpperCase())}
-                </div>
-              </li>
-            )
-          })}
-
-        </ul>
+        <MultiSelect
+          style={{ multiselectContainer:{ width: '100%'}, searchBox:{ background: 'white' }}}
+          options={options}
+          displayValue="label"
+          onSelect={onSelect}
+          onRemove={onRemove}
+          placeholder=''
+          id='country'
+          ref={multiselectRef}
+          
+        />
+        </div>
         <div className={style.containerButton}>
         <button className={style.button} type="submit" onClick={topFunction}>Finish</button>
         </div>

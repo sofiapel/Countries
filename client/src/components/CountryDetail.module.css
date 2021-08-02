@@ -1,3 +1,10 @@
+.container{
+    background-color: rgb(116, 160, 211);
+    height: 100vh;
+
+
+}
+
 .noActivities{
     display:flex;
     justify-content: center;
@@ -14,15 +21,21 @@
 .country{
     display: flex;
     justify-content: center;
+    /*width: 25%;*/
+
 }
 
 .activitiesTitle{
-    background-color: aqua;
+    background-color: rgb(8, 27, 70);
     display: flex;
     justify-content: center;
+    color: white;
 }
-
-.img{
+.mapp{
+    width:5%;
+    margin: 3px;
+}
+.flag{
     height: 183px;
     width: 234px;
     padding: 20px;

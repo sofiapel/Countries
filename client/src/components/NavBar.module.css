@@ -1,0 +1,8 @@
+.img{
+    width: 3%;
+    cursor: pointer;
+    margin: 3px;
+}
+.container{
+    background-color: rgb(17, 114, 74);
+}

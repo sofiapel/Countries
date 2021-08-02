@@ -3,7 +3,7 @@ import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom';
 import Countries from './Countries'
 import style from './Home.module.css';
-
+ 
 function Home() {
     return (
         <div >
@@ -16,7 +16,7 @@ function Home() {
                 <SearchBar/>
             </div>
             <div className={style.secondContainer}>
-                <Countries/>
+                <div><Countries/></div>
             </div>    
         </div>
     )

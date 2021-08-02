@@ -27,7 +27,6 @@ function SearchBar() {
     return (
 
         <>
- 
             <div >
                 <form onSubmit={handleSubmit} className={style.container}>
                     <input 

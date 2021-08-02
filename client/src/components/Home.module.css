@@ -5,6 +5,8 @@
 .secondContainer{
   background-image: url('../img/ship2.0.jpg');
   background-repeat: no-repeat;
+  background-size: cover;
+  height: 990px;
  
 
 }
@@ -49,3 +51,4 @@
     width: 100%;
   }
 
+ 

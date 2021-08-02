@@ -5,7 +5,7 @@ import gif from '../img/world.gif'
 import { RiMapPinLine } from 'react-icons/ri'
 import { IconContext } from 'react-icons/lib';
 
-
+ 
 function LandingPage() {
     return (
         <>

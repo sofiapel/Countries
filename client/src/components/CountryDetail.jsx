@@ -2,11 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountries, getCountryById } from '../actions/index'
+import { getCountryById } from '../actions/index'
 import style from './CountryDetail.module.css'
+import Logo from '../img/mapa.png'
 
 
-function CountryDetail() {
+function CountryDetail(props) {
     const { countryId } = useParams();
     const country = useSelector(state => state.countryById)
     const dispatch = useDispatch()
@@ -14,19 +15,28 @@ function CountryDetail() {
         dispatch(getCountryById(countryId))
     }, [])
 
+    function handleBack(e){
+        props.history.push('/countries')
+
+    }
+
     console.log(country && country.activities)
 
     return (
-        <div>
+        <div className={style.container}>
+            <div >
+                <img className={style.mapp} onClick={handleBack} src={Logo} alt='image not found'/>
+            </div>
             <div className={style.country}>
                 <div>
                 <h1>{country && country.name.replace(/\b\w/g, l => l.toUpperCase())}</h1>
                 <h3>Capital: {country && country.capital}</h3>
                 <h3>Population: { country && new Intl.NumberFormat().format(country.population)}</h3>
                 <h3>Continent: {country && country.subregion}</h3>
+                <h3>Area: {country && new Intl.NumberFormat().format(country.area)} km</h3>
                 </div>
                 <div>
-                <img className={style.img} src={country && country.flag} alt='no se encontró imagen' />
+                <img className={style.flag} src={country && country.flag} alt='no se encontró imagen' />
                 </div>
             </div>
             <h2 className={style.activitiesTitle}>Activities</h2>

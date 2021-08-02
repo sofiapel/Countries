@@ -5,7 +5,7 @@ import Country from './Country.jsx'
 import style from './Countries.module.css'
 import { IoAirplane } from "react-icons/io5";
 import { IconContext } from 'react-icons/lib';
-
+ 
 function Countries() {
     const page = useSelector((state) => state.pages)
     const countries = useSelector(state => state.countriesLoaded)
