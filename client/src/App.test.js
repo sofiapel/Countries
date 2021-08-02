@@ -16,5 +16,5 @@ import Form from './components/AddActivity'
 //       const { container } = render(<Form />)
 //       const element = container.querySelectorAll('label')[0]
 //       expect(element.innerHTML).toBe('Username:');
-//   });
+//   })
 // })
