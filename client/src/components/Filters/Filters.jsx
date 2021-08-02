@@ -3,7 +3,7 @@ import AscDscPop from './AscDscPop'
 import ByContinent from './ByContinent'
 import ActivityFilter from './ActivityFilter'
 import style from './Filters.module.css'
-
+ 
 function Filters() {
     return (
         <>         

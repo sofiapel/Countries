@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { orderAsc, orderDsc, orderPop, setPage } from '../../actions/index'
+import { orderAsc, orderDsc, orderPop, setPage, orderArea } from '../../actions/index'
 import style from './AscDscPop.module.css'
 
 function AscDscPop() {
@@ -8,13 +8,26 @@ function AscDscPop() {
     const dispatch = useDispatch()
     
     const handleChange = (e) => {
-        e.target.value !== 'population'? 
-            e.target.value == 'asc'? 
-                dispatch(orderAsc()) : 
-                dispatch(orderDsc()) 
-        : dispatch(orderPop())
+        switch(e.target.value){
+            case 'population':
+                {
+                    dispatch(orderPop());
+                    break
+                }
+            case 'asc':
+                {
+                    dispatch(orderAsc());
+                    break
 
-        
+                }
+            case 'area':
+                {
+                    dispatch(orderArea());
+                    break
+                };
+            default:
+                dispatch(orderDsc())
+        }   
         dispatch(setPage(0))
     }
 
@@ -26,6 +39,7 @@ function AscDscPop() {
                     <option value='asc'>A-Z</option>
                     <option value='dsc'>Z-A</option>
                     <option value='population'>Population</option>
+                    <option value='area'>Area</option>
                 </select>
             </form>
         </div>

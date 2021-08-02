@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getActivities, resetContinent } from '../../actions';
+import { getActivities } from '../../actions';
 import { setPage } from '../../actions/index'
 import style from './ActivityFilter.module.css'
 

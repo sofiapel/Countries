@@ -5,8 +5,7 @@ import style from './ByContinent.module.css'
 
 function ByContinent() {
     const dispatch = useDispatch()
-
-    
+   
     function Reset() {
         var dropDown = document.getElementById("filterActivity");
         dropDown.selectedIndex = 0;
