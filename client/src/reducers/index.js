@@ -1,11 +1,10 @@
-import { GrAction } from "react-icons/gr";
-import { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC,ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES, SET_PAGE } from "../actions/names"
+import { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC,ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES, SET_PAGE, ORDER_AREA } from "../actions/names"
 const initialState = {
     allCountries:[],
     countriesLoaded: [],
     countryById: undefined,
     pages: 0,
-    resetContinent: false
+    
 };
 
 function rootReducer(state=initialState, action){
@@ -23,21 +22,17 @@ function rootReducer(state=initialState, action){
                 })
             }
         case GET_COUNTRY_BY_ID:
-            //funciona :D
             return {
                 ...state,
                 countryById: action.payload
             }
         case GET_COUNTRIES_BY_NAME:
-            //funciona :D
-            //console.log('aaa', action.payload)
+
             return {
                 ...state,
-                //countriesByName: action.payload,
                 countriesLoaded: action.payload
             }
         case GET_COUNTRIES:
-            //console.log('holaa',action.payload)
             return {
                 ...state,
                 allCountries: action.payload,
@@ -75,6 +70,14 @@ function rootReducer(state=initialState, action){
                     countriesLoaded: state.countriesLoaded.slice().sort(function compare(a,b){
                         return a.population - b.population;
                     }).reverse()
+                }
+            case ORDER_AREA:
+                return {
+                    ...state,
+                    countriesLoaded: state.countriesLoaded.slice().sort(function compare(a,b){
+                        return a.area - b.area;
+                    }).reverse()
+    
                 }
             case ORDER_CONTINENT:
                 return {
