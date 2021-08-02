@@ -1,4 +1,4 @@
-const { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC, ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES,SET_PAGE } = require('./names');
+const { GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_BY_ID, ORDER_ASC, ORDER_DSC, ORDER_POP, ORDER_CONTINENT, GET_ACTIVITIES,SET_PAGE, ORDER_AREA } = require('./names');
 const axios = require('axios');
 
 export function getCountries(){
@@ -49,6 +49,13 @@ export function orderPop(){
     }
 }
 
+export function orderArea(){
+    return {
+        type: ORDER_AREA
+    }
+}
+
+
 export function orderContinent(continent){
     return {
         type: ORDER_CONTINENT,
@@ -56,24 +63,8 @@ export function orderContinent(continent){
     }
 }
 
-//CAMBIARLA
-/*export function getActivities(activity){
-    return async(dispatch) =>{
-        try{
-            const countries = await axios.get('http://localhost:3001/countries')
-            const countriesByActivity = countries.data.filter(c =>{
-                return c.activities && c.activities.some(a => a.name.toUpperCase() == activity.toUpperCase())
-            })
-            return dispatch({
-                type: GET_ACTIVITIES,
-                payload: countriesByActivity
-            })
-        }catch(err){
-            console.log(err)
-        }
-    }
 
-}*/
+
  export function getActivities(activity){
      return {
         type: GET_ACTIVITIES,

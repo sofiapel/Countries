@@ -8,3 +8,5 @@ export const ORDER_CONTINENT ='ORDER_CONTINENT'
 export const GET_ACTIVITIES = 'GET_ACTIVITIES'
 export const SEARCH_BY_ACTIVITY = 'SEARCH_ BY_ACTIVITY'
 export const SET_PAGE = 'SET_PAGE'
+export const ORDER_AREA= 'ORDER_AREA'
+
