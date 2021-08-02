@@ -21,7 +21,7 @@ const { getAllCountries } = require('../api/src/Handlers/countries')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
-// Syncing all the models at once.
+
 conn.sync({ force: true }).then(() => {
   getAllCountries()
   server.listen(3001, () => {
