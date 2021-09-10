@@ -3,12 +3,22 @@
 
 }
 .secondContainer{
-  background-image: url('../img/ship2.0.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 990px;
+  height: 100%;
+  padding-bottom: 20px;
  
 
+}
+.fondito{
+  background-image: url("../img/ship2.0.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    padding-bottom: 20px;
 }
 .a{
     display: block;

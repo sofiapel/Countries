@@ -28,8 +28,13 @@
 }
 
 
-.background{
+.fondito2{
+    position: fixed;
+    height: 100vh;
+    width:100vw;
     background-color: rgb(137, 226, 137);
+    z-index:-1;
+
 }
 
 .input{
@@ -53,12 +58,13 @@
     
     background-color:rgba(35, 131, 40, 0.9);
     padding: 10px 20px 30px 20px;
-    max-width:100%;
+    max-width:50%;
     float: left;
     left: 50%;
     border-radius:7px;
     -webkit-border-radius:7px;
     -moz-border-radius:7px;
+
     
 
 }

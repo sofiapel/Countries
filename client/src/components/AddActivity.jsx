@@ -99,7 +99,9 @@ export default function AddActivity(props) {
     return 0;
   })
 
-  return (
+  return (   
+    <div>
+    <div className={style.fondito2}></div> 
     <div className={style.background}>
       <div className={style.first}>
       <div>
@@ -171,6 +173,7 @@ export default function AddActivity(props) {
         <button className={style.button} type="submit" onClick={topFunction}>Finish</button>
         </div>
       </form>
+    </div>
     </div>
   );
 }

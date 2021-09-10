@@ -3,6 +3,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 30px;
+
 }
 
  
@@ -11,6 +12,7 @@
     justify-content: center;
     position: sticky;
     padding: 5px;
+    background-color: black;
 
 }
 

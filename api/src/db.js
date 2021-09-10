@@ -2,37 +2,37 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-// const {
-//   DB_USER, DB_PASSWORD, DB_HOST,
-// } = process.env;
-
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
-//   logging: false, 
-//   native: false, 
-//   define: {
-//     timestamps: false
-//   }
-// });
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,PORT,
+  DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
-var pg = require('pg');
-pg.defaults.ssl = true;
 
-const sequelize = new Sequelize({
-  database: "df737dntsguhh",
-  username: DB_USER,
-  password: DB_PASSWORD,
-  host: DB_HOST,
-  port: 5432,
-  dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true, // This will help you. But you will see nwe error
-      rejectUnauthorized: false // This line will fix new error
-    }
-  },
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
+  logging: false, 
+  native: false, 
+  define: {
+    timestamps: false
+  }
 });
+// const {
+//   DB_USER, DB_PASSWORD, DB_HOST,PORT,
+// } = process.env;
+// var pg = require('pg');
+// pg.defaults.ssl = true;
+
+// const sequelize = new Sequelize({
+//   database: "df737dntsguhh",
+//   username: DB_USER,
+//   password: DB_PASSWORD,
+//   host: DB_HOST,
+//   port: 5432,
+//   dialect: "postgres",
+//   dialectOptions: {
+//     ssl: {
+//       require: true, // This will help you. But you will see nwe error
+//       rejectUnauthorized: false // This line will fix new error
+//     }
+//   },
+// });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

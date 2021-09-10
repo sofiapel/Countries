@@ -7,6 +7,7 @@ import style from './Home.module.css';
 function Home() {
     return (
         <div >
+            <div className={style.fondito}></div>
             <div className={style.firstContainer}>
                 <Link to='/activity'>
                     <button className={style.a}>

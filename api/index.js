@@ -1,4 +1,4 @@
-const { getAllCountries } = require('../api/src/Handlers/countries')
+//const { getAllCountries } = require('../api/src/Handlers/countries')
 //                       _oo0oo_
 //                      o8888888o
 //                      88" . "88
@@ -24,7 +24,7 @@ const { conn } = require('./src/db.js');
 
 conn.sync({ force: false }).then(() => {
   // getAllCountries()
-  server.listen(process.env.PORT || 3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  server.listen(process.env.PORT || 3003, () => {
+    console.log('%s listening at 3003'); // eslint-disable-line no-console
   });
 });

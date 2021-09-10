@@ -56,12 +56,12 @@ const getAllCountries = async (req, res, next) =>{
                     }
                 }
             
-            if(req.query.name){
-                res.json(countries)
-            }
-            if(!req.query.name){
-            res.json( countre)}
-            }    
+            // if(req.query.name){
+            //     res.json(countries)
+            // }
+            // if(!req.query.name){
+            // res.json(countre)}
+        }    
                 
     
 //     countries.map(async c => {
@@ -141,7 +141,7 @@ const countryById = async (req,res, next)=> {
 
 module.exports = {
     getAllCountries,
-    getCountries,
+    // getCountries,
     countryById
 }
 

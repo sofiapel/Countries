@@ -5,17 +5,20 @@
     object-fit: cover;  
 }
 .title{
-    padding-left: 50px;
     text-decoration: none;
+    text-align: center;
 }
 
 .container{
-    width: 23%;
-    height: 100%;
-    height: 45%;
-    border: 2px solid rgb(62, 81, 253);
-    border-radius: 10%;
-    background-color: rgba(76, 128, 240,0.8);
+    min-width: 23%;
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    min-height: 45%;
+    justify-content: center;
+    border: 2px solid #3e51fd;
+    border-radius: 3%;
+    background-color: rgba(76,128,240,.8);
 }
 
 
